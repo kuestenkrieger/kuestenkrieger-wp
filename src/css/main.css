@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./components/navigation.css";
+@import "./base/fonts.css";
 @plugin "@tailwindcss/typography";
 
 @source "../*.php";
@@ -10,13 +12,13 @@
     --color-offwhite-mid: #C9C8C7;
     --color-offwhite-semidark: #949392;
     --color-offwhite-dark: #66615E;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
 }
-
-@import "./components/navigation.css";
 
 @layer base {
     body {
-        @apply min-h-screen;
+        @apply min-h-screen font-body;
     }
     .header {
         @apply top-0;
@@ -39,6 +41,14 @@
             }
 
         }
+    }
+
+    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+        @apply font-heading font-bold;
+    }
+
+    h1, .h1 {
+        @apply text-6xl;
     }
 }
 
