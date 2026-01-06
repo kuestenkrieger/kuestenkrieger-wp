@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source "../*.php";
+@source "../parts/**/*.php";
+
+@theme {
+    --color-primary: #c1121f;
+    --color-offwhite: #F2F0EF;
+    --color-offwhite-mid: #C9C8C7;
+    --color-offwhite-semidark: #949392;
+    --color-offwhite-dark: #66615E;
+}
+
+@import "./components/navigation.css";
+
+@layer base {
+    body {
+        @apply min-h-screen;
+    }
+    .header {
+        @apply top-0;
+    }
+    .admin-bar {
+        @apply min-h-[calc(100vh-32px)];
+        .header {
+            @apply top-[32px];
+        }
+        &.min-body-height {
+            @apply min-h-screen;
+        }
+    }
+
+    @media screen and (max-width: 782px) {
+        .admin-bar {
+            @apply min-h-[calc(100vh-46px)];
+            .header {
+                @apply top-[46px];
+            }
+
+        }
+    }
+}
+
+.custom-logo {
+    @apply h-6 w-auto;
+}

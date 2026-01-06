@@ -1,0 +1,17 @@
+@layer components {
+    #primary-menu.menu {
+        @apply flex items-center gap-6 text-sm uppercase font-bold;
+        .menu-item {
+            @apply relative;
+            .sub-menu {
+                @apply absolute top-12 right-0 min-w-48 w-fit bg-white shadow-md px-4 py-3;
+                .menu-item {
+                    @apply block py-2 px-1 hover:bg-gray-100 border-b border-gray-200;
+                    a {
+                        @apply block whitespace-nowrap;
+                    }
+                }
+            }
+        }
+    }
+}
