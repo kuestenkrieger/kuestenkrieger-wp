@@ -8,6 +8,7 @@ $kk_includes = [
     'inc/assets.php',  // Vite & Scripts
     'inc/cleanup.php', // Performance & Sicherheit
     'inc/media.php',   // Bilder (SVG/WebP)
+    'inc/portfolio.php', // Portfolio Custom Post Type & Taxonomy
 ];
 
 foreach ($kk_includes as $file) {
