@@ -1,0 +1,9 @@
+@layer components {
+    .photo-set {
+        .content {
+            p {
+                @apply max-w-200 mx-auto;
+            }
+        }
+    }
+}

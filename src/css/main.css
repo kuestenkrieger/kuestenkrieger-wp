@@ -18,6 +18,7 @@
 @import "./base/fonts.css";
 @import "./base/typography.css";
 @import "./components/gallery_block.css";
+@import "./views/photo_set.css";
 
 @layer base {
     body {

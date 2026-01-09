@@ -37,8 +37,8 @@ add_filter('image_editor_output_format', function($formats) {
  * Registriert eigene Bildgrößen für die Galerie und das Portfolio.
  */
 function kuestenkrieger_custom_image_sizes() {
-    add_image_size('gallery-thumb', 600, 600, true);
-    add_image_size('gallery-landscape', 1200, 600, true);
+    add_image_size('gallery-thumb', 600, 600, false);
+    add_image_size('gallery-landscape', 1200, 600, false);
     add_image_size('portfolio-hero', 1920, 1080, false);
 }
 add_action('after_setup_theme', 'kuestenkrieger_custom_image_sizes');
@@ -50,7 +50,7 @@ function kuestenkrieger_clean_gallery_block_output($block_content, $block) {
     if ('core/gallery' === $block['blockName']) {
         $pattern = '/<figure[^>]*class="([^"]*)"[^>]*>/i';
         return preg_replace_callback($pattern, function($matches) {
-            $new_classes = 'gallery-block grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 !list-none !p-0';
+            $new_classes = 'gallery-block grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 !list-none !p-0';
             return str_replace($matches[1], $new_classes, $matches[0]);
         }, $block_content, 1);
     }
