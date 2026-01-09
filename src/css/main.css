@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "./components/navigation.css";
-@import "./base/fonts.css";
 @plugin "@tailwindcss/typography";
 
 @source "../*.php";
@@ -15,6 +14,10 @@
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
 }
+
+@import "./base/fonts.css";
+@import "./base/typography.css";
+@import "./components/gallery_block.css";
 
 @layer base {
     body {
@@ -41,14 +44,6 @@
             }
 
         }
-    }
-
-    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-        @apply font-heading font-bold tracking-tighter;
-    }
-
-    h1, .h1 {
-        @apply text-6xl;
     }
 }
 

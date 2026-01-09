@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-	<main id="primary" class="grow pt-14">
+	<main class="grow pt-14">
 		<?php
 		while ( have_posts() ) :
 			the_post();

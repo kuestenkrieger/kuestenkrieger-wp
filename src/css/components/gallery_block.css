@@ -1,0 +1,13 @@
+@layer components {
+    .gallery-block {
+        @apply my-0;
+    }
+
+    .gallery-block-image {
+        @apply m-0! p-0 block;
+    }
+
+    .gallery-block-image img {
+        @apply block w-full h-full object-cover;
+    }
+}
