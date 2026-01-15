@@ -39,7 +39,8 @@ add_filter('image_editor_output_format', function($formats) {
 function kuestenkrieger_custom_image_sizes() {
     add_image_size('gallery-thumb', 600, 600, false);
     add_image_size('gallery-landscape', 1200, 600, false);
-    add_image_size('portfolio-hero', 1920, 1080, false);
+    add_image_size('gallery-fullsize', 1920, 1080, false);
+    add_image_size('portfolio-hero', 2560, 1440, false);
 }
 add_action('after_setup_theme', 'kuestenkrieger_custom_image_sizes');
 
@@ -128,3 +129,43 @@ function kuestenkrieger_purify_gallery_image_html($block_content, $block) {
     return $block_content;
 }
 add_filter('render_block', 'kuestenkrieger_purify_gallery_image_html', 10, 2);
+
+/**
+ * Verhindert, dass WordPress versucht, SVGs zuzuschneiden.
+ * Dies entfernt die "Zuschneiden"-Option im Editor für SVG-Dateien.
+ */
+add_filter('wp_prepare_attachment_for_js', function($response, $attachment, $meta) {
+    if ($response['mime'] === 'image/svg+xml') {
+        // Wir geben dem SVG fiktive Maße, falls keine da sind,
+        // damit WordPress nicht "denkt" es sei kaputt
+        if (empty($response['width'])) {
+            $response['width'] = 100;
+            $response['height'] = 100;
+        }
+
+        $response['non_resizable'] = true;
+    }
+    return $response;
+}, 10, 3);
+
+/**
+ * Optimiert Bilder im kuestenkrieger/slide Block
+ */
+function kuestenkrieger_optimize_slider_images($block_content, $block) {
+    if ('kuestenkrieger/slide' === $block['blockName'] && !empty($block['attrs']['mediaId'])) {
+        $attachment_id = $block['attrs']['mediaId'];
+
+        // Generiere das vollständige Responsive Image Tag für die 2k-Größe
+        $image_html = wp_get_attachment_image($attachment_id, '2k-resolution', false, [
+            'class' => 'slide-image',
+            'loading' => 'lazy'
+        ]);
+
+        if ($image_html) {
+            // Ersetzt das einfache <img> Tag aus der save() Funktion durch das optimierte WP-Tag
+            return preg_replace('/<img[^>]+>/i', $image_html, $block_content);
+        }
+    }
+    return $block_content;
+}
+add_filter('render_block', 'kuestenkrieger_optimize_slider_images', 10, 2);

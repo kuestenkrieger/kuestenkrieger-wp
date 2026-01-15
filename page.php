@@ -1,6 +1,13 @@
-<?php get_header(); ?>
+<?php
+$remove_padding = get_post_meta(get_the_ID(), '_kk_remove_padding', true);
 
-	<main class="grow pt-14">
+// padding-Klasse bestimmen
+$main_classes = 'grow';
+$main_classes .= ($remove_padding === '1') ? ' pt-0' : ' px-6 pt-14';
+
+get_header();
+?>
+	<main class="<?php echo esc_attr($main_classes); ?>">
 		<?php
 		while ( have_posts() ) :
 			the_post();

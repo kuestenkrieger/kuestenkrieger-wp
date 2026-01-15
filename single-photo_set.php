@@ -8,7 +8,7 @@
         $date = get_post_meta(get_the_ID(), '_shooting_date', true);
         ?>
         <?php if ($date) : ?>
-            <div class="font-bold text-offwhite-dark"><?php echo date_i18n('m.Y', strtotime($date)); ?></div>
+            <div class="font-bold text-sm px-4 py-2 text-black text-center"><?php echo date_i18n('m.Y', strtotime($date)); ?></div>
         <?php endif; ?>
         <h1 class="mb-0 leading-[0.8]"><?php the_title(); ?></h1>
     </section>

@@ -9,10 +9,11 @@ function kuestenkrieger_setup() {
     ));
 
     add_theme_support( 'custom-logo', array(
-        'height'      => 50,
-        'width'       => 400,
-        'flex-height' => false,
+        'height'      => 250,
+        'width'       => 250,
         'flex-width'  => true,
+        'flex-height' => true,
+        'header-text' => ['site-title', 'site-description'],
     ));
 
     add_theme_support('wp-block-styles');

@@ -1,7 +1,11 @@
+<?php $hide_title = get_post_meta(get_the_ID(), '_kk_hide_title', true); ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <?php if ($hide_title !== '1') : ?>
 	<header class="entry-header">
 		<?php the_title( '<h1>', '</h1>' ); ?>
-	</header><!-- .entry-header -->
+	</header>
+    <?php endif; ?>
 
 	<div class="entry-content">
 		<?php
